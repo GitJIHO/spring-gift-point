@@ -43,7 +43,7 @@ public class ProductAdminController {
         @RequestParam(defaultValue = "10") int size,
         @RequestParam(defaultValue = "name") String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        Page<Product> productPage = productService.getAllProducts(pageable);
+        Page<Product> productPage = productService.getAllProducts(null, pageable);
         model.addAttribute("productPage", productPage);
         model.addAttribute("sortBy", sortBy);
         model.addAttribute("productRequest", new ProductRequest());
@@ -79,7 +79,8 @@ public class ProductAdminController {
     public String updateProductForm(@PathVariable("id") Long id, Model model) {
         Product product = productService.getProductById(id);
         ProductRequest productRequest = new ProductRequest(
-            product.getName(), product.getPrice(), product.getImg(), product.getCategory().getId());
+            product.getName(), product.getPrice(), product.getImageUrl(),
+            product.getCategory().getId());
         model.addAttribute("productRequest", productRequest);
         return getString(model, product);
     }
