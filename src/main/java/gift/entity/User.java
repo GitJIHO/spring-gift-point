@@ -33,8 +33,7 @@ public class User {
     private String accessToken;
 
     protected User() {
-        this.point = 0;
-        this.accessToken = "demoToken";
+
     }
 
     public User(String email, String password) {
@@ -59,15 +58,6 @@ public class User {
     public boolean samePassword(String password) {
         return this.password.equals(password);
     }
-
-//    public void subtractWishNumber(Integer number, Product product) {
-//        wishes.removeIf(wish -> {
-//            if (wish.sameProduct(product)) {
-//                wish.subtractNumber(number);
-//            }
-//            return wish.checkLeftWishNumber();
-//        });
-//    }
 
     public void deleteWish(Product product) {
         this.wishes.removeIf(wish -> wish.sameProduct(product));
